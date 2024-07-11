@@ -4,49 +4,53 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>{{ env('APP_NAME') }}</title>
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <title>Landmark Legislation Utility Tool</title>
 
+        <script src="{{ asset('js/app.js') }}" defer></script>
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
     </head>
 
+    <body>
+        <header>
+            <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+                <a class="navbar-brand text-monospace" href="{{ route ('home') }}"><b>Landmark Legislation Utility Tool</b></a>
 
-    <body class="bg-slate-200 text-slate-900 min-h-screen flex flex-col">
-        <header class="bg-slate-800 shadow-lg">
-            <nav>
-                <a href="{{ route ('home') }}" class="nav-text"><b>Landmark Legislation Utility Tool</b></a>
-
-                <div class="flex items-center gap-4">
-                
+                <ul class='navbar-nav'>
                     @auth
-                        <a href="{{ route ('add') }}" class="nav-link">Add Landmark Ordinance</a>
-                        <a href="{{ route ('logout') }}" class="nav-link">Logout</a>
+                        <li class='nav-item'>
+                            <a href="{{ route ('add') }}" class="nav-link active">Add Landmark Ordinance</a>
+                        </li>
+                        <li class='nav-item'>
+                            <a href="{{ route ('logout') }}" class="nav-link active">Logout</a>
+                        </li>
                     @endauth
                     @guest
-                        <a href="{{ route ('login') }}" class="nav-link">Login</a>
+                        <li class='nav-item'>
+                            <a href="{{ route ('login') }}" class="nav-link active">Login</a>
+                        </li>
                     @endguest
 
-                </div>
+                </ul>
             </nav>
         </header>
-        <main class="py-8 px-4 mx-auto flex-grow w-full">
-            <div class = 'body-container'>
-                {{ $slot }}
+
+        <main>
+            <div>
+                @yield('content')
             </div>
         </main>
+
+        <footer class='justify-content-between align-items-center py-3 my-4 border-top'>
+            <div>
+                <span>
+                © 2024 Sangguniang Panlungsod - IT Team. All Rights Reserved.
+                </span>
+            </div>
+        </footer>
     </body>
 
-
-    <footer class="bg-white dark:bg-slate-800">
-        <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
-          <hr class="my-6 border-slate-200 sm:mx-auto dark:border-slate-600 lg:my-8" />
-          <div class="sm:flex sm:items-center sm:justify-between">
-              <span class="text-sm text-slate-400 sm:text-center dark:text-slate-400">© 2024 Sangguniang Panlungsod - IT Team</a>. All Rights Reserved.
-              </span>
-          </div>
-        </div>
-    </footer>
 </html>

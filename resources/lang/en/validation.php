@@ -130,9 +130,29 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'ResOrdNum' => [
+            'unique'   => 'A Landmark with this Resolution Ordinance Number already exists.',
+            'required' => 'Resolution Ordinance Number cannot be empty.',
+            'regex'    => 'Resolution Ordinance Number must follow the following format: ####-## (# must be numbers)',
+            'max'      => 'Resolution Ordinance Number must not exceed 10 characters'
         ],
+
+        'Title'     => [
+            'required' => 'Title cannot be empty.',
+            'max'      => 'Title must not exceed 8000 characters'
+        ],
+
+        'ImageName' => [
+            'required' => 'File name cannot be empty.',
+            'max'      => 'File name must not exceed 50 characters.',
+            'regex' => 'File name must not include the following characters: \ / : * ? " < > | '
+        ],
+
+        'pdf'       => [
+            'required' => 'Please attach a PDF file.',
+            'mimes'    => 'the file attached is not a PDF file, please attach a PDF file.',
+            'max'      => 'The uploaded PDF file must not exceed 10 Megabytes.'
+        ]
     ],
 
     /*

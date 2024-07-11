@@ -180,6 +180,6 @@ class LandmarkController extends Controller
             'landmark' => 0
         ]);
 
-        return redirect()->route('home');
+        return redirect()->route('home')->with('message', 'Landmark Withdrawn.');
     }
 }
